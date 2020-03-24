@@ -19,7 +19,7 @@ jobs:
       - run:
           name: run tests
           command: |
-            mkdir test-output
+            mkdir -p test-output
             npm run unit-tests
   pack:
     docker:
