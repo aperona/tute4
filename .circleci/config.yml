@@ -38,7 +38,7 @@ jobs:
     docker:
       - image: circleci/node:lts
     steps:
-      - checkout 
+      - checkout
       - run:
           name: install nodejsscan
           command: |
@@ -48,7 +48,9 @@ jobs:
       - run:
           name: run nodejsscan
           command: |
-            nodejsscan -d ./
+            nodejsscan -d ./ -o sast-output.json
+      - store_artifacts:
+          path: sast-output.json
   pack:
     docker:
       - image: circleci/node:lts
@@ -65,10 +67,10 @@ workflows:
     jobs:
       - ci-build
       - integration-tests:
-        requires:
+          requires: 
           - ci-build
       - sast:
-        requires:
+          requires:
           - ci-build
       - pack:
           requires:
