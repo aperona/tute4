@@ -6,12 +6,11 @@ commands:
           name: Install dependencies
           command: |
             npm install
-
 jobs:
   ci-build:
     docker:
       - image: circleci/node:lts
-    enviroment:
+    environment:
       JEST_JUNIT_OUTPUT_DIR: test-output
     steps:
       - checkout 
@@ -19,7 +18,7 @@ jobs:
       - run:
           name: run tests
           command: |
-            mkdir -p test-output
+            mkdir test-output
             npm run unit-tests
   pack:
     docker:
