@@ -6,6 +6,7 @@ commands:
           name: Install dependencies
           command: |
             npm install
+            npm install mocha
 jobs:
   ci-build:
     docker:
@@ -19,6 +20,7 @@ jobs:
           name: run tests
           command: |
             mkdir test-output
+            npm start
             npm run unit-tests
   pack:
     docker:
